@@ -34,7 +34,8 @@ action :sync do
   execute "set permissions" do
     if new_resource.mode then
       command "chmod -R #{new_resource.mode} #{new_resource.path}"
-    end
+      action :run
+    else action :nothing end
   end
   if ::File.exist?(hgup_file)
     new_resource.updated_by_last_action(true)
@@ -60,7 +61,8 @@ action :clone do
   execute "set permission" do
     if new_resource.mode then
       command "chmod -R #{new_resource.mode} #{new_resource.path}"
-    end
+      action :run
+    else action :nothing end
   end
   if ::File.exist?(hgup_file)
     new_resource.updated_by_last_action(true)
