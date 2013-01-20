@@ -31,8 +31,8 @@ action :sync do
     command "chown -R #{new_resource.owner}:#{new_resource.group} #{new_resource.path}"
     action :nothing
   end
-  if new_resource.mode then
-    execute "set permissions" do
+  execute "set permissions" do
+    if new_resource.mode then
       command "chmod -R #{new_resource.mode} #{new_resource.path}"
     end
   end
@@ -57,8 +57,8 @@ action :clone do
     command "chown -R #{new_resource.owner}:#{new_resource.group} #{new_resource.path}"
     action :nothing
   end
-  if new_resource.mode then
-    execute "set permission" do
+  execute "set permission" do
+    if new_resource.mode then
       command "chmod -R #{new_resource.mode} #{new_resource.path}"
     end
   end
